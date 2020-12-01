@@ -1,28 +1,64 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <el-row :gutter="32">
+      <el-col :span="15">
+        <basic-message />
+      </el-col>
+      <el-col :span="9">
+        <opes-event />
+      </el-col>
+    </el-row>
+    <el-row :gutter="32">
+      <el-col :span="12">
+        <pulse />
+      </el-col>
+      <el-col :span="12">
+        <temperature />
+      </el-col>
+    </el-row>
+    <el-row :gutter="32">
+      <el-col :span="12">
+        <SPO2 />
+      </el-col>
+      <el-col :span="12">
+        <oxygen />
+      </el-col>
+    </el-row>
+    <el-row :gutter="32">
+      <el-col :span="15">
+        <disease-observe />
+      </el-col>
+      <el-col :span="9">
+        <opes-event />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import BasicMessage from "@/components/BasicMessage";
+import OpesEvent from "@/components/OpesEvent";
+import Pulse from "@/components/SignCoefficient/Pulse";
+import Temperature from "@/components/SignCoefficient/Temperature";
+import SPO2 from "@/components/SignCoefficient/SPO2";
+import Oxygen from "@/components/SignCoefficient/Oxygen";
+import DiseaseObserve from "@/components/DiseaseObserve";
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    DiseaseObserve,
+    Oxygen,
+    SPO2,
+    Temperature,
+    Pulse,
+    OpesEvent,
+    BasicMessage
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-size: 14px;
 }
 </style>
