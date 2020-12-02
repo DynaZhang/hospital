@@ -149,7 +149,7 @@ export default {
   margin-bottom: 10px;
 }
 .row {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .label {
   height: 20px;

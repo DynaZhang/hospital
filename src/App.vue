@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <div class="print-btn">
-      <el-button type="primary" @click="handlePrintPage">打印</el-button>
-    </div>
     <div id="content">
       <el-row class="row" :gutter="32">
         <el-col :span="15">
@@ -27,6 +24,9 @@
       <el-row class="row">
         <pacu-event />
       </el-row>
+      <el-row class="row">
+        <resume-medical />
+      </el-row>
     </div>
   </div>
 </template>
@@ -39,9 +39,11 @@ import SignCoefficient from "@/components/SignCoefficient/Index";
 import Entry from "@/components/Entry";
 import OutRoom from "@/components/OutRoom";
 import PacuEvent from "@/components/PacuEvent";
+import ResumeMedical from "@/components/ResumeMedical";
 export default {
   name: 'App',
   components: {
+    ResumeMedical,
     PacuEvent,
     OutRoom,
     Entry,
@@ -64,6 +66,6 @@ export default {
   padding: 20px;
 }
 .row {
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 }
 </style>

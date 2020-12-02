@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   name: 'index',
   data() {
@@ -70,74 +72,200 @@ export default {
     handleGetData() {
       this.$refs.formMessage.validate(valid => {
         if (valid) {
-          // const xDataList = []
-          // const yDataList = []
-          // const recordTime = this.formMessage.monitorDate[1].getTime() - this.formMessage.monitorDate[0].getTime()
-          // const count = Math.ceil(recordTime / (this.formMessage.often * 60 * 1000))
-          // for (let i = 0; i <= count; i++) {
-          //   const newDate = new Date(this.formMessage.monitorDate[0].getTime() + i * this.formMessage.often * 60 * 1000)
-          //   xDataList.push(moment(newDate).format('yyyy-MM-DD HH:mm'))
-          //   const newValue = parseInt(Math.random() * 4 + 37)
-          //   yDataList.push(newValue)
-          // }
-          // this.chartOptions = {
-          //   grid: {
-          //
-          //   },
-          //   legend: {
-          //     data: ['吸氧(L/min)']
-          //   },
-          //   tooltip: {
-          //     trigger: 'axis'
-          //   },
-          //   xAxis: {
-          //     type: 'category',
-          //     name: '时间',
-          //     boundaryGap: false,
-          //     data: xDataList,
-          //     minorTick: {
-          //       show: true
-          //     },
-          //     splitLine: {
-          //       show: true,
-          //       lineStyle: {
-          //         color: '#999'
-          //       }
-          //     },
-          //     minorSplitLine: {
-          //       show: true,
-          //       splitNumber: 6,
-          //       lineStyle: {
-          //         color: '#ddd'
-          //       }
-          //     }
-          //   },
-          //   yAxis: {
-          //     name: '吸氧(L/min)',
-          //     minorTick: {
-          //       show: true
-          //     },
-          //     splitLine: {
-          //       lineStyle: {
-          //         color: '#999'
-          //       }
-          //     },
-          //     minorSplitLine: {
-          //       show: true,
-          //       lineStyle: {
-          //         color: '#ddd'
-          //       }
-          //     }
-          //   },
-          //   series: [
-          //     {
-          //       type: 'line',
-          //       name: '吸氧(L/min)',
-          //       data: yDataList,
-          //       smooth: true
-          //     }
-          //   ]
-          // }
+          const xDataList = []
+          const yDataList = []
+          const recordTime = this.formMessage.monitorTime[1].getTime() - this.formMessage.monitorTime[0].getTime()
+          const count = Math.ceil(recordTime / (this.formMessage.often * 60 * 1000))
+          for (let i = 0; i <= count; i++) {
+            const newDate = new Date(this.formMessage.monitorTime[0].getTime() + i * this.formMessage.often * 60 * 1000)
+            xDataList.push(moment(newDate).format('yyyy-MM-DD HH:mm'))
+            const pulse = parseInt(Math.random() * 200)
+            const breath = parseInt(Math.random() * 45)
+            const NSBP = parseInt(Math.random() * 200)
+            const NDBP = parseInt(Math.random() * 200)
+            const temperature = parseInt(Math.random() * 45)
+            const SPO2 = parseInt(Math.random() * 100)
+            yDataList.push({
+              pulse,
+              breath,
+              NSBP,
+              NDBP,
+              temperature,
+              SPO2
+            })
+          }
+          this.chartOptions = {
+            grid: {
+
+            },
+            legend: {
+              data: [
+                {
+                  name: '脉搏',
+                  icon: 'circle'
+                },
+                {
+                  name: '自主呼吸',
+                  icon: 'rect'
+                },
+                {
+                  name: '收缩压',
+                  icon: 'roundRect'
+                },
+                {
+                  name: '舒张压',
+                  icon: 'triangle'
+                },
+                {
+                  name: '体温',
+                  icon: 'diamond'
+                },
+                {
+                  name: '血氧饱和度(SPO2)',
+                  icon: 'pin'
+                }
+              ]
+            },
+            tooltip: {
+              trigger: 'axis',
+              formatter: (params) => {
+                const res = []
+                if (params.length > 0) {
+                  const time = params[0].axisValueLabel
+                  params.forEach((item,index) => {
+                    // eslint-disable-next-line no-unused-vars
+                    let unit
+                    if (index <= 1) {
+                     unit= '次'
+                    } else if (index === 4) {
+                     unit = '℃'
+                    } else if (index === 5) {
+                     unit = '%'
+                    } else {
+                     unit = ''
+                    }
+                    const pushItem = `<p>${item.marker}${item.seriesName}：${item.value}${unit}</p>`
+                    res.push(pushItem)
+                  })
+                  return `<div><p>时间：${time}</p>${res.join('')}</div>`
+                } else {
+                  return ''
+                }
+              }
+            },
+            xAxis: {
+              type: 'category',
+              name: '时间',
+              boundaryGap: false,
+              data: xDataList,
+              minorTick: {
+                show: true
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: '#999'
+                }
+              },
+              minorSplitLine: {
+                show: true,
+                splitNumber: 6,
+                lineStyle: {
+                  color: '#ddd'
+                }
+              }
+            },
+            yAxis: [
+              {
+                type: 'value',
+                position: 'left',
+                scale: true,
+                minorTick: {
+                  show: true
+                },
+                splitLine: {
+                  lineStyle: {
+                    color: '#999'
+                  }
+                },
+                minorSplitLine: {
+                  show: true,
+                  lineStyle: {
+                    color: '#ddd'
+                  }
+                }
+              },
+              {
+                type: 'value',
+                position: 'right',
+                scale: true,
+                minorTick: {
+                  show: true
+                },
+                splitLine: {
+                  lineStyle: {
+                    color: '#999'
+                  }
+                },
+                minorSplitLine: {
+                  show: true,
+                  lineStyle: {
+                    color: '#ddd'
+                  }
+                }
+              }
+            ],
+            series: [
+              {
+                type: 'line',
+                name: '脉搏',
+                yAxisIndex: 0,
+                data: yDataList.map(item => item.pulse),
+                symbol: 'circle',
+                symbolSize: 10
+              },
+              {
+                type: 'line',
+                name: '自主呼吸',
+                yAxisIndex: 1,
+                data: yDataList.map(item => item.breath),
+                symbol: 'rect',
+                symbolSize: 10
+              },
+              {
+                type: 'line',
+                name: '收缩压',
+                yAxisIndex: 0,
+                data: yDataList.map(item => item.NSBP),
+                symbol: 'roundRect',
+                symbolSize: 10
+              },
+              {
+                type: 'line',
+                name: '舒张压',
+                yAxisIndex: 0,
+                data: yDataList.map(item => item.NDBP),
+                symbol: 'triangle',
+                symbolSize: 10
+              },
+              {
+                type: 'line',
+                name: '体温',
+                yAxisIndex: 1,
+                data: yDataList.map(item => item.temperature),
+                symbol: 'diamond',
+                symbolSize: 10
+              },
+              {
+                type: 'line',
+                name: '血氧饱和度(SPO2)',
+                yAxisIndex: 1,
+                data: yDataList.map(item => item.SPO2),
+                symbol: 'pin',
+                symbolSize: 10
+              }
+            ]
+          }
         }
       })
     }
@@ -146,7 +274,6 @@ export default {
     if (window.matchMedia) {
       const mediaQueryList = window.matchMedia('print')
       mediaQueryList.addListener((mql) => {
-        console.log(this.$refs.formWrapper);
         if (mql.matches) {
           this.$refs.formWrapper.style.display = 'none'
           console.log('before print')
@@ -172,8 +299,8 @@ export default {
   margin-bottom: 10px;
 }
 .chart-wrapper {
-  width: 100%;
-  height: 400px;
+  width: 1100px;
+  height: 600px;
 }
 .empty {
   width: 100%;
