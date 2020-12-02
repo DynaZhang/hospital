@@ -2,38 +2,38 @@
   <div class="basic-message">
     <div class="title">病人基本信息</div>
     <el-row class="row">
-      <el-col :span="2">
+      <el-col :span="6">
         <div class="label">术后诊断: </div>
       </el-col>
-      <el-col :span="22">
+      <el-col :span="18">
         <div class="value"></div>
       </el-col>
     </el-row>
     <el-row class="row">
-      <el-col :span="2">
+      <el-col :span="6">
         <div class="label">手术名称: </div>
       </el-col>
-      <el-col :span="22">
+      <el-col :span="18">
         <div class="value"></div>
       </el-col>
     </el-row>
     <el-row class="row">
       <el-col :span="12">
         <el-row>
-          <el-col :span="4">
+          <el-col :span="8">
             <div class="label">麻醉方式: </div>
           </el-col>
-          <el-col :span="20">
+          <el-col :span="16">
             <div class="value"></div>
           </el-col>
         </el-row>
       </el-col>
       <el-col :span="12">
         <el-row>
-          <el-col :span="3">
+          <el-col :span="8">
             <div class="label">ASA: </div>
           </el-col>
-          <el-col :span="21">
+          <el-col :span="16">
             <div class="value"></div>
           </el-col>
         </el-row>
@@ -42,30 +42,30 @@
     <el-row class="row">
       <el-col :span="12">
         <el-row>
-          <el-col :span="4">
+          <el-col :span="8">
             <div class="label">转入时间: </div>
           </el-col>
-          <el-col :span="20">
+          <el-col :span="16">
             <div class="value"></div>
           </el-col>
         </el-row>
       </el-col>
       <el-col :span="12">
         <el-row>
-          <el-col :span="4">
+          <el-col :span="8">
             <div class="label">转出时间: </div>
           </el-col>
-          <el-col :span="20">
+          <el-col :span="16">
             <div class="value"></div>
           </el-col>
         </el-row>
       </el-col>
     </el-row>
     <el-row class="row">
-      <el-col :span="2">
+      <el-col :span="6">
         <div class="label">转至：</div>
       </el-col>
-      <el-col :span="22">
+      <el-col :span="18">
         <div class="label no-border">
           <el-radio-group style="width: 100%;" v-model="changeTo">
             <el-col :span="6">
@@ -76,10 +76,10 @@
             </el-col>
             <el-col :span="12">
               <el-row class="value no-border">
-                <el-col :span="6">
+                <el-col :span="8">
                   <el-radio disabled :label="2">其他</el-radio>
                 </el-col>
-                <el-col :span="18">
+                <el-col :span="16">
                   <div class="value"></div>
                 </el-col>
               </el-row>
@@ -89,23 +89,23 @@
       </el-col>
     </el-row>
     <el-row class="row">
-      <el-col :span="12">
-        <el-col :span="4">
+      <el-col :span="8">
+        <el-col :span="14">
           <div class="label">实施麻醉医师: </div>
         </el-col>
-        <el-col :span="20"></el-col>
+        <el-col :span="10"></el-col>
       </el-col>
-      <el-col :span="6">
-        <el-col :span="8">
+      <el-col :span="8">
+        <el-col :span="12">
           <div class="label">PCAU医生: </div>
         </el-col>
-        <el-col :span="16"></el-col>
+        <el-col :span="12"></el-col>
       </el-col>
-      <el-col :span="6">
-        <el-col :span="8">
+      <el-col :span="8">
+        <el-col :span="12">
           <div class="label">PCAU护士: </div>
         </el-col>
-        <el-col :span="16"></el-col>
+        <el-col :span="12"></el-col>
       </el-col>
     </el-row>
   </div>
