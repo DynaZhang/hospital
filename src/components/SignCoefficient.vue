@@ -300,7 +300,7 @@ export default {
 }
 .chart-wrapper {
   width: 1100px;
-  height: 600px;
+  height: 700px;
 }
 .empty {
   width: 100%;

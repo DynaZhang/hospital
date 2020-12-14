@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <div id="content">
+      <el-row class="row">
+        <top-message />
+      </el-row>
       <el-row class="row" :gutter="32">
         <el-col :span="15">
           <basic-message />
@@ -44,9 +47,11 @@ import OutRoom from "@/components/OutRoom";
 import PacuEvent from "@/components/PacuEvent";
 import ResumeMedical from "@/components/ResumeMedical";
 import Sign from "@/components/Sign";
+import TopMessage from "@/components/TopMessage";
 export default {
   name: 'App',
   components: {
+    TopMessage,
     Sign,
     ResumeMedical,
     PacuEvent,
@@ -71,6 +76,9 @@ export default {
   padding: 20px;
 }
 .row {
-  margin-bottom: 35px;
+  margin-bottom: 40px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 </style>

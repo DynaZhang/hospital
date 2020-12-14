@@ -112,12 +112,25 @@
 </template>
 
 <script>
+import {getOPSDetail} from "@/apis";
+
 export default {
   name: "BasicMessage",
   data() {
     return {
+      detail: {
+
+      },
       changeTo: ''
     }
+  },
+  mounted() {
+    getOPSDetail().then(response => {
+      console.log(response)
+    }).catch(error => {
+      console.log(error);
+      this.$message.error('请求错误')
+    })
   }
 }
 </script>
